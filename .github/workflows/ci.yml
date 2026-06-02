@@ -59,8 +59,12 @@ jobs:
 
       - name: Release
         run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           semantic-release version
           semantic-release changelog
+          git add CHANGELOG.md
+          git diff --cached --quiet || git commit -m "docs: update changelog [skip ci]"
           semantic-release publish
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
