@@ -14,6 +14,9 @@ allowed_tags = ["feat", "fix", "refactor", "docs", "chore", "sec"]
 minor_tags = ["feat"]
 patch_tags = ["fix", "sec", "refactor", "docs", "chore"]
 
+[tool.semantic_release.changelog]
+mode = "init"
+
 [tool.semantic_release.changelog.default_templates]
 changelog_file = "CHANGELOG.md"
 
