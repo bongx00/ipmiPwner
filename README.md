@@ -73,10 +73,14 @@ python3 ipmipwner.py --host 192.168.1.12 -p 624 -uW /opt/SecLists/Usernames/cirt
 ## Collaboration
 
 ```sh
+# Setup
 pip install -r requirements-dev.txt
 pre-commit install
 pre-commit install --hook-type pre-commit
 pre-commit install --hook-type commit-msg
+
+# Cleaning lints
+python scripts/ruff_fix.py $(find . -name "*.py" -not -path "./.git/*")
 ```
 
 Commit format:
