@@ -10,6 +10,6 @@
 
 - Update README with dev commands for commit lints
 
-### Core
+### Chore
 
 - Remove sudo execution, unneeded modules, then adding dev tooling and lints, README changes.

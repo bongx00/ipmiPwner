@@ -73,20 +73,32 @@ python3 ipmipwner.py --host 192.168.1.12 -p 624 -uW /opt/SecLists/Usernames/cirt
 ## Collaboration
 
 ```sh
+# Setup automatic lints & dev tools
 pip install -r requirements-dev.txt
 pre-commit install
 pre-commit install --hook-type pre-commit
 pre-commit install --hook-type commit-msg
+
+# Manual lints cleaning
+python scripts/ruff_fix.py $(find . -name "*.py" -not -path "./.git/*")
+
+# Preview next release version (optional)
+semantic-release version --print
 ```
 
-Commit format:
-- `feat:`     new functionality
-- `fix:`      bug fixes or updates
-- `docs:`     documentation changes
-- `chore:`    project/config changes
-- `refactor:` code improvements
-- `sec:`      security changes
+### Commit format — versions follow `major.minor.patch`:
 
+| Type        | Version bump      | Description       
+|-------------|-------------------|-------------------
+| `feat!:`    | major (**X**.0.0) | breaking change
+| `feat:`     | minor (0.**X**.0) | new functionality
+| `fix:`      | patch (0.0.**X**) | bug fix
+| `sec:`      | patch (0.0.**X**) | security fix
+| `refactor:` | patch (0.0.**X**) | code improvement, no behavior change
+| `docs:`     | patch (0.0.**X**) | documentation only
+| `chore:`    | patch (0.0.**X**) | project/config changes
+
+**Example commits**
 ```sh
 # Valid
 git commit -m "chore: remove sudo requirement"
