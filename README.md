@@ -73,7 +73,10 @@ python3 ipmipwner.py --host 192.168.1.12 -p 624 -uW /opt/SecLists/Usernames/cirt
 ## Collaboration
 
 ```sh
-pip install -r requirements-dev.txt    # includes ruff for linting
+pip install -r requirements-dev.txt
+pre-commit install
+pre-commit install --hook-type pre-commit
+pre-commit install --hook-type commit-msg
 ```
 
 Commit format:
@@ -86,7 +89,7 @@ Commit format:
 
 ```sh
 # Valid
-git commit -m "fix: remove sudo requirement"
+git commit -m "chore: remove sudo requirement"
 
 # Invalid
 git commit -m "remove sudo requirement"
