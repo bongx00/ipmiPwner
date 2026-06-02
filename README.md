@@ -72,12 +72,14 @@ python3 ipmipwner.py --host 192.168.1.12 -p 624 -uW /opt/SecLists/Usernames/cirt
 
 ## Collaboration
 
+### Local setup
+
+Installs ruff (linting + formatting) and enforces commit message format automatically on each `git commit`:
+
 ```sh
 # Setup automatic lints & dev tools
 pip install -r requirements-dev.txt
-pre-commit install
-pre-commit install --hook-type pre-commit
-pre-commit install --hook-type commit-msg
+pre-commit install --hook-type pre-commit --hook-type commit-msg
 
 # Manual lints cleaning
 python scripts/ruff_fix.py $(find . -name "*.py" -not -path "./.git/*")
@@ -87,6 +89,14 @@ semantic-release version --print
 # Avoid Warning
 GH_TOKEN=local semantic-release version --print
 ```
+
+### GitHub Actions setup (repo owner only)
+
+CI runs automatically via `.github/workflows/ci.yml`. One-time setup required in the repo settings:
+
+- **Settings → Actions → General → Workflow permissions** → set to `Read and write permissions`
+
+Forks will run CI normally but the `release` job will not create releases on the original repo — this is expected behavior.
 
 ### Commit format — versions follow `major.minor.patch`:
 
