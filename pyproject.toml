@@ -1,6 +1,6 @@
 [project]
 name = "ipmipwner"
-version = "1.0.3"
+version = "1.0.4"
 
 [tool.semantic_release]
 version_toml = ["pyproject.toml:project.version"]
