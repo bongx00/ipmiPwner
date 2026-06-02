@@ -84,6 +84,8 @@ python scripts/ruff_fix.py $(find . -name "*.py" -not -path "./.git/*")
 
 # Preview next release version (optional)
 semantic-release version --print
+# Avoid Warning
+GH_TOKEN=local semantic-release version --print
 ```
 
 ### Commit format — versions follow `major.minor.patch`:
