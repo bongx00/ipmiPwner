@@ -1,0 +1,15 @@
+repos:
+  - repo: https://github.com/compilerla/conventional-pre-commit
+    rev: v3.0.0
+    hooks:
+      - id: conventional-pre-commit
+        args: [feat, fix, docs, chore, refactor, sec]
+
+  - repo: local
+    hooks:
+      - id: ruff
+        name: ruff (lint + format)
+        language: system
+        entry: python scripts/ruff_fix.py
+        types: [python]
+        pass_filenames: true

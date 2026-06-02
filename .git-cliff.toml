@@ -1,0 +1,15 @@
+[changelog]
+header = "# Changelog\n\n"
+
+[git]
+conventional_commits = true
+filter_unconventional = true
+
+commit_parsers = [
+  { message = "^feat", group = "Features" },
+  { message = "^fix", group = "Fixes" },
+  { message = "^refactor", group = "Refactor" },
+  { message = "^docs", group = "Docs" },
+  { message = "^chore", group = "Chore" },
+  { message = "^sec", group = "Security" }
+]
