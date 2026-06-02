@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.0.5 (2026-06-02)
+
+### Bug Fixes
+
+- Update the changelog changes cycle.
+  ([`6ec5371`](https://github.com/bongx00/ipmiPwner/commit/6ec5371e486d6700a61c5a244423ee1e1287e169))
+
+
 ## v1.0.4 (2026-06-02)
 
 ### Bug Fixes
