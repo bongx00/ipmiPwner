@@ -72,6 +72,10 @@ python3 ipmipwner.py --host 192.168.1.12 -p 624 -uW /opt/SecLists/Usernames/cirt
 
 ## Collaboration
 
+### Local setup
+
+Installs ruff (linting + formatting) and enforces commit message format automatically on each `git commit`:
+
 ```sh
 # Setup
 pip install -r requirements-dev.txt
@@ -81,16 +85,40 @@ pre-commit install --hook-type commit-msg
 
 # Cleaning lints
 python scripts/ruff_fix.py $(find . -name "*.py" -not -path "./.git/*")
+# Setup automatic lints & dev tools
+pip install -r requirements-dev.txt
+pre-commit install --hook-type pre-commit --hook-type commit-msg
+
+# Manual lints cleaning
+python scripts/ruff_fix.py $(find . -name "*.py" -not -path "./.git/*")
+
+# Preview next release version (optional)
+semantic-release version --print
+# Avoid Warning
+GH_TOKEN=local semantic-release version --print
 ```
 
-Commit format:
-- `feat:`     new functionality
-- `fix:`      bug fixes or updates
-- `docs:`     documentation changes
-- `chore:`    project/config changes
-- `refactor:` code improvements
-- `sec:`      security changes
+### GitHub Actions setup (repo owner only)
 
+CI runs automatically via `.github/workflows/ci.yml`. One-time setup required in the repo settings:
+
+- **Settings → Actions → General → Workflow permissions** → set to `Read and write permissions`
+
+Forks will run CI normally but the `release` job will not create releases on the original repo — this is expected behavior.
+
+### Commit format — versions follow `major.minor.patch`:
+
+| Type        | Version bump      | Description       
+|-------------|-------------------|-------------------
+| `feat!:`    | major (**X**.0.0) | breaking change
+| `feat:`     | minor (0.**X**.0) | new functionality
+| `fix:`      | patch (0.0.**X**) | bug fix
+| `sec:`      | patch (0.0.**X**) | security fix
+| `refactor:` | patch (0.0.**X**) | code improvement, no behavior change
+| `docs:`     | patch (0.0.**X**) | documentation only
+| `chore:`    | patch (0.0.**X**) | project/config changes
+
+**Example commits**
 ```sh
 # Valid
 git commit -m "chore: remove sudo requirement"
